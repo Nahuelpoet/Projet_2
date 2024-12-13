@@ -2,9 +2,12 @@ from turtle import *
 
 t = Turtle()
 t.setpos(0,0)
+t.goto(0,-100)
+t.goto(0,100)
+t.goto(0,0)
+t.goto(-100,0)
+t.goto(100,0)
 i = 0
-
-        
 
 def fonctionLineaireCanV():
     print("Vous avez choisi la fonction linéaire sous la forme y = ax+b!")
@@ -20,16 +23,7 @@ def fonctionLineaireCan(x):
 
 fonctionLineaireCanV()
 
-
-
-while True:
-
-   for i in range(100):
-    t.color("red")
-    t.goto(i,10*fonctionLineaireCan(i))
-    
-
-    for i in range(100):
-        t.color("black")
-        t.goto(i,10*a*i)
+for i in range(-100, 100):
+    t.color("black")
+    t.goto(i,fonctionLineaireCan(i))
         
