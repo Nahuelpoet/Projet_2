@@ -33,6 +33,8 @@ def choixFonction():
     Go = 1
     
 def fonctionLineaireCanValeur():
+    global a
+    global b
     print("Vous avez choisi la fonction linéaire sous la forme y = ax+b!")
     a = input("Quelle est la valeur de a?:")
     a = int(a)
@@ -40,16 +42,20 @@ def fonctionLineaireCanValeur():
     b = int(b)
 
 def fonctionLineaireCan(x):
-   return a*x+b
+   global a
+   global b
+   return a*x + b
 
 def fonctionQuadratiqueCanValeur(x):
     print("Vous avez choisi la fonction quadratique sous la forme y = ax^2+bx+c!")
 
 choixFonction()
 print(Go)
+t.color("black")
 if Go == 1:
+    t.pendown()
     for i in range(-100, 100):
-        t.color("black")
         t.goto(i,fonctionLineaireCan(i))
+        
         
 t.screen.mainloop()        
