@@ -13,10 +13,10 @@ i = 0
 a = 0
 b = 0
 c = 0
-global Go
 Go = 0
 
 def choixFonction():
+    global Go
     print("Quelle fonction voulez-vous utiliser?")
     print("1. Fonction lineaire canonique (y = ax+b)")
     print("2. Fonction quadratique canonique (y = ax^2+bx+c)")
