@@ -53,8 +53,9 @@ choixFonction()
 print(Go)
 t.color("black")
 if Go == 1:
-    t.pendown()
+    t.setpos(-100,fonctionLineaireCan(-100))
     for i in range(-100, 100):
+        t.setpos(i,fonctionLineaireCan(i))
         t.goto(i,fonctionLineaireCan(i))
         
         
