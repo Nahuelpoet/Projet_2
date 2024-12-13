@@ -9,21 +9,47 @@ t.goto(-100,0)
 t.goto(100,0)
 i = 0
 
-def fonctionLineaireCanV():
+
+a = 0
+b = 0
+c = 0
+global Go
+Go = 0
+
+def choixFonction():
+    print("Quelle fonction voulez-vous utiliser?")
+    print("1. Fonction lineaire canonique (y = ax+b)")
+    print("2. Fonction quadratique canonique (y = ax^2+bx+c)")
+
+    reponse = input("Entrez votre choix: ").capitalize()
+    match reponse:
+        case ("FONCTION LINEAIRE CANONIQUE" | "1"):
+            fonctionLineaireCanValeur()
+           
+
+        case _:
+            print("Choix invalide! Veuillez réessayer, le nombre ou le nom de la fonction.")
+            choixFonction()
+    Go = 1
+    
+def fonctionLineaireCanValeur():
     print("Vous avez choisi la fonction linéaire sous la forme y = ax+b!")
-    global a
     a = input("Quelle est la valeur de a?:")
     a = int(a)
-    global b
     b = input("Quelle est la valeur de b?:")
     b = int(b)
 
 def fonctionLineaireCan(x):
    return a*x+b
 
-fonctionLineaireCanV()
+def fonctionQuadratiqueCanValeur(x):
+    print("Vous avez choisi la fonction quadratique sous la forme y = ax^2+bx+c!")
 
-for i in range(-100, 100):
-    t.color("black")
-    t.goto(i,fonctionLineaireCan(i))
+choixFonction()
+print(Go)
+if Go == 1:
+    for i in range(-100, 100):
+        t.color("black")
+        t.goto(i,fonctionLineaireCan(i))
         
+t.screen.mainloop()        
