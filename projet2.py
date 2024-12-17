@@ -37,12 +37,12 @@ def ValeurLineaire():
     global a
     global b
     global c
-    a = input("Quelle est la valeur de a?:")
+    a = input("Quelle est la valeur de a? ATTENTION, le code plante si vous n'écrivez pas un nombre (négatif ok):")
     a = float(a)
-    b = input("Quelle est la valeur de b?:")
+    b = input("Quelle est la valeur de b? ATTENTION, le code plante si vous n'écrivez pas un nombre (négatif ok):")
     b = float(b)
     if fonction == 2:
-        c =input("Quelle est la valeur de c?:")
+        c =input("Quelle est la valeur de c? ATTENTION, le code plante si vous n'écivez pas un nombre (négatif ok):")
         c = float(c)
 
 
@@ -84,19 +84,35 @@ if Go == 1 and fonction == 1:
         i = 0
         t.penup()
         while i < range:
-            if fonctionLineaireCan(range - i) > range or fonctionLineaireCan(-range + i) < -range:
+            if a > 0 and fonctionLineaireCan(range - i) > range:
+                i = i+1
+            elif a < 0 and fonctionLineaireCan(range - i) < -range:
+                i = i+1
+            else:
+                t.setpos(-(range - i),fonctionLineaireCan(-(range - i)))
+                rangenegatif = -(range - i)
+                break
+
+        while i < range:
+            if fonctionLineaireCan(-range + i) < -range:
                 i = i+1
 
             else:
-                t.setpos(-(range - i),fonctionLineaireCan(-(range - i)))
-                range = range - i
+                rangepositif = range - i
                 break
+
         t.pendown()
         i = 0
-        print(i)
-        while i < range:
+        while i < rangepositif:
+            t.penup()
             t.goto(i,fonctionLineaireCan(i))
+            t.pendown()
             i = i + 1
+        while i > rangenegatif:
+            t.penup
+            t.goto(i,fonctionLineaireCan(i))
+            t.pendown
+            i = i -1
 
 if Go == 1 and fonction == 2:
 
@@ -104,18 +120,37 @@ if Go == 1 and fonction == 2:
         t.penup()
 
         while i < range:
-            if fonctionQuadratiqueCan(i) > range:
+            if a > 0 and fonctionQuadratiqueCan(range - i) > range:
                 i = i+1
+
+            elif a < 0 and fonctionQuadratiqueCan(range - i) < -range:
+                i = i+1
+
             else:
-                t.setpos(-range,fonctionQuadratiqueCan(-range))
+                t.setpos(-(range - i),fonctionQuadratiqueCan(-(range - i)))
+                rangenegatif = -(range - i)
                 break
+        while i < range:
+            if fonctionQuadratiqueCan(-range + i) < -range:
+                i = i+1
+
+            else:
+                rangepositif = range - i
+                break
+
         range = i
         t.pendown()
         i = 0
-        while i < range:
-            t.setpos(i,fonctionQuadratiqueCan(i))
+        while i < rangepositif:
+            t.penup()
             t.goto(i,fonctionQuadratiqueCan(i))
+            t.pendown()
             i = i + 1
+        while i > rangenegatif:
+            t.penup
+            t.goto(i,fonctionQuadratiqueCan(i))
+            t.pendown
+            i = i -1
         
         
 t.screen.mainloop()        
