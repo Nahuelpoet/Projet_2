@@ -8,6 +8,7 @@ b = 0
 c = 0
 Go = 0
 fonction = 0
+t.color("black")
 
 def choixFonction():
     global Go
@@ -58,7 +59,6 @@ def fonctionQuadratiqueCan(x):
     return a*x**2 + b*x + c
 
 choixFonction()
-t.color("black")
 
 range = 1
 range = input("Quelle sont les valeurs de x que vous voulez afficher? Metter seulement la valeur absolue de x:")
