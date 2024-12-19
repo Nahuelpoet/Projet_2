@@ -73,6 +73,11 @@ if range > 100:
 if range < 30:
     range = range *10
 
+global rangenegatif
+rangenegatif = -range
+global rangepositif
+rangepositif = range
+
 t.setpos(0,0)
 t.goto(0,-range)
 t.goto(0,range)
@@ -80,27 +85,29 @@ t.goto(0,0)
 t.goto(-range,0)
 t.goto(range,0)
 
+
+
 if Go == 1 and fonction == 1:
         i = 0
         t.penup()
-        while i < range:
-            if a > 0 and fonctionLineaireCan(range - i) > range:
-                i = i+1
-            elif a < 0 and fonctionLineaireCan(range - i) < -range:
-                i = i+1
+        while i > -range:
+            if fonctionLineaireCan(i) < range and fonctionLineaireCan(i) > -range:
+                i = i-1
+
             else:
-                t.setpos(-(range - i),fonctionLineaireCan(-(range - i)))
-                rangenegatif = -(range - i)
+                rangenegatif = i
                 break
 
         while i < range:
-            if fonctionLineaireCan(-range + i) < -range:
+            if fonctionLineaireCan(i) < range and fonctionLineaireCan(i) > -range:
                 i = i+1
 
             else:
-                rangepositif = range - i
+                rangepositif = i
                 break
 
+        print(rangenegatif)
+        print(rangepositif)
         t.pendown()
         i = 0
         while i < rangepositif:
@@ -108,6 +115,7 @@ if Go == 1 and fonction == 1:
             t.goto(i,fonctionLineaireCan(i))
             t.pendown()
             i = i + 1
+        i = 0
         while i > rangenegatif:
             t.penup
             t.goto(i,fonctionLineaireCan(i))
