@@ -38,12 +38,12 @@ def ValeurLineaire():
     global a
     global b
     global c
-    a = input("Quelle est la valeur de a? ATTENTION, le code plante si vous n'écrivez pas un nombre (négatif ok):")
+    a = input("Quelle est la valeur de a? ATTENTION, le code plante si vous n'écrivez pas un nombre (il peut être négatif):")
     a = float(a)
-    b = input("Quelle est la valeur de b? ATTENTION, le code plante si vous n'écrivez pas un nombre (négatif ok):")
+    b = input("Quelle est la valeur de b? ATTENTION, le code plante si vous n'écrivez pas un nombre (il peut être négatif):")
     b = float(b)
     if fonction == 2:
-        c =input("Quelle est la valeur de c? ATTENTION, le code plante si vous n'écivez pas un nombre (négatif ok):")
+        c =input("Quelle est la valeur de c? ATTENTION, le code plante si vous n'écivez pas un nombre (il peut être négatif):")
         c = float(c)
 
 
@@ -97,7 +97,7 @@ if Go == 1 and fonction == 1:
             else:
                 rangenegatif = i
                 break
-
+        i = 0
         while i < range:
             if fonctionLineaireCan(i) < range and fonctionLineaireCan(i) > -range:
                 i = i+1
@@ -106,9 +106,6 @@ if Go == 1 and fonction == 1:
                 rangepositif = i
                 break
 
-        print(rangenegatif)
-        print(rangepositif)
-        t.pendown()
         i = 0
         while i < rangepositif:
             t.penup()
@@ -127,23 +124,20 @@ if Go == 1 and fonction == 2:
         i = 0
         t.penup()
 
-        while i < range:
-            if a > 0 and fonctionQuadratiqueCan(range - i) > range:
-                i = i+1
-
-            elif a < 0 and fonctionQuadratiqueCan(range - i) < -range:
-                i = i+1
+        while i > -range:
+            if fonctionQuadratiqueCan(i) < range or fonctionQuadratiqueCan(i) > -range:
+                i = i-1
 
             else:
-                t.setpos(-(range - i),fonctionQuadratiqueCan(-(range - i)))
-                rangenegatif = -(range - i)
+                rangenegatif = i
                 break
+        i = 0
         while i < range:
-            if fonctionQuadratiqueCan(-range + i) < -range:
+            if fonctionQuadratiqueCan(i) < range or fonctionQuadratiqueCan(i) > -range:
                 i = i+1
 
             else:
-                rangepositif = range - i
+                rangepositif = i
                 break
 
         range = i
